@@ -1,0 +1,9 @@
+to do:
+1. once finish is pressed, show some kind of statistics. (also clearinterval)
+2. ability to enter a set of exercises and save it as a preset so you can choose and do it later
+   you should be able to edit (add,remove) exercises from the preset,
+   change individual exercises' text
+   change orientation (number in list)
+   merge preset with another preset
+   delete preset
+3. show total time passed once finished (also count when paused)
