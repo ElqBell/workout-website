@@ -30,31 +30,31 @@ const exercises = [
     "14. Calf Lifts",
     "15. Back Extentions" */
 
-const button = document.getElementById("start");
+const start = document.getElementById("start");
 const reset = document.getElementById("reset");
+const finish = document.getElementById("finish");
 const inputs = document.getElementsByTagName("input");
 
-button.addEventListener("click", () => {
+start.addEventListener("click", () => {
     // Checks if all the inputs have some kind of value
-    if(button.innerText === "START" && checkEmptyInputs()) {
-        document.getElementById("required").style.opacity = 1;
-    }
-    else if(button.innerText === "START") {timer();}
+    if(start.innerText === "START" && checkEmptyInputs()) {document.getElementById("required").style.opacity = 1;}
+    else if(start.innerText === "START") {timer();}
 
-    if(button.innerText !== "START" || button.innerText === "START" && !checkEmptyInputs()) {
+    if(start.innerText !== "START" || start.innerText === "START" && !checkEmptyInputs()) {
         // Disables styles to divs that are used when checking whether any inputs are empty
         document.getElementById("required").style.transition = "none";
         document.getElementById("required").style.opacity = 0;
         document.getElementById("required").style.display = "none";
         reset.style.display = "initial";
-
         colorChange();
     }
 });
 
 reset.addEventListener("click", resetEverything);
 
-// Changes and displays active time and sets when written(changed) in input
+finish.addEventListener("click", displayStats);
+
+// Changes and displays active time and sets once started, when written(changed) in input
 inputs[0].addEventListener("change", () => {
     document.querySelector("#timer p").innerText = inputs[0].value;
 });
@@ -73,13 +73,13 @@ inputs[2].addEventListener("keyup", () => {
 
 // Start timer when "START" button is pressed
 function timer() {
-    // First start
+    // Start
     if(document.querySelector("#action p").innerText === "") {
         document.getElementsByTagName("form")[0].style.display = "none"; // Hides form
         document.getElementById("start").style.top = "100px";            // Lowers down `START` button
         document.getElementById("reset").style.top = "100px";            // Lowers down `RESET` button
         document.querySelector("#action p").innerText = "Get Ready!";    // Changes action text
-        document.querySelector("#timer p").innerText = 10;               // Initial countdown ("Get Ready!")
+        document.querySelector("#timer p").innerText = 1;               // Initial countdown ("Get Ready!")
         document.querySelector("#exercise p").innerText = exercises[0];  // Displays first exercise
 
         // Displays all the necessary exercise information
@@ -96,16 +96,19 @@ function timer() {
 // Stop timer (when all exercises and sets are finished)
 function stopTimer() {
     resetEverything();
-    button.style.display = "none";
+    start.style.display = "none";
     document.getElementsByTagName("form")[0].style.display = "none"; // Hides form
     document.getElementById("page").style.backgroundColor = "#7c1b1fe6";
-    document.querySelector("div.information").style.display = "flex";
+    document.getElementsByClassName("congratulations")[0].style.display = "flex";
     document.getElementById("finish").style.display = "initial";
 }
 
 // Executes when "RESET" button is pressed
 function resetEverything() {
-    button.innerText = "START";
+    if(start.style.display = "none") {start.style.display = "initial";}
+    document.getElementsByClassName("stats")[0].style.display = "none";
+
+    start.innerText = "START";
     reset.style.dataReset = "true"; // Indication that timer has been reset
     reset.style.display = "none"; // Hides "RESET" button
 
@@ -139,6 +142,16 @@ function resetEverything() {
     document.getElementById("required").style.transition = "opacity 0.5s";
 }
 
+// Display
+function displayStats() {
+    document.getElementById("page").style.backgroundColor = "#066bb6";
+    finish.style.display = "none";
+    reset.style.display = "initial"
+    document.getElementsByClassName("information")[1].style.display = "none";
+    document.getElementsByClassName("stats")[0].style.display = "flex";
+    document.getElementById("reset").style.top = "100px";
+}
+
 // Checks if either of the inputs are empty
 function checkEmptyInputs() {
     return inputs[0].value == "" ||
@@ -152,42 +165,42 @@ function colorChange() {
     let color = document.getElementById("page");
     let actionText = document.querySelector("#action p").innerText;
 
-    if(actionText === "Get Ready!" && button.innerText === "PAUSE") {
-        button.innerText = "CONTINUE";
+    if(actionText === "Get Ready!" && start.innerText === "PAUSE") {
+        start.innerText = "CONTINUE";
         color.style.backgroundColor = "#6e4804";
     }
-    else if(actionText === "Get Ready!" && button.innerText === "CONTINUE") {
-        button.innerText = "PAUSE";
+    else if(actionText === "Get Ready!" && start.innerText === "CONTINUE") {
+        start.innerText = "PAUSE";
         color.style.backgroundColor = "#066bb6";
     }
     else if(actionText === "Get Ready!") {
-        button.innerText = "PAUSE";
+        start.innerText = "PAUSE";
     }
-    else if(actionText === "Work" && button.innerText === "CONTINUE") {
-        button.innerText = "PAUSE";
+    else if(actionText === "Work" && start.innerText === "CONTINUE") {
+        start.innerText = "PAUSE";
         color.style.backgroundColor = "#118007";
     }
-    else if(actionText === "Break" && button.innerText === "CONTINUE") {
-        button.innerText = "PAUSE";
+    else if(actionText === "Break" && start.innerText === "CONTINUE") {
+        start.innerText = "PAUSE";
         color.style.backgroundColor = "#066bb6";
     }
     else {
-        button.innerText = "CONTINUE";
+        start.innerText = "CONTINUE";
         color.style.backgroundColor = "#6e4804";
     }
 }
 
 // Counts down time and changes things related to time
 function countdown() {
-    let time = document.querySelector("#timer p").innerText,
+    // Executes if timer is not paused 
+    if(start.innerText !== "CONTINUE") {
+        let time = document.querySelector("#timer p").innerText,
         action = document.querySelector("#action p").innerText,
         color = document.getElementById("page"),
         active = inputs[0].value,
         pause = inputs[1].value,
         sets = document.querySelector("#sets p").innerText;
-
-    // Executes if timer is not paused 
-    if(button.innerText !== "CONTINUE") {
+        
         // Subtracts 1 second from running time
         document.querySelector("#timer p").innerText--;
 
