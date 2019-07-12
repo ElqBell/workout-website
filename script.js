@@ -16,20 +16,6 @@ const exercises = [
     "15. Back Extentions"
 ];
 
-/*
-    "4. Jumping Jacks",
-    "5. Diamond Pushups",
-    "6. Mountain Climbers",
-    "7. Plank / Leg Side to Side",
-    "8. Leg Raises / Seated Side to Side",
-    "9. Russian Twist / Weighted",
-    "10. Broad Pushups",
-    "11. Bicycles",
-    "12. Fast Foot Shuffle (Fast Low Run)",
-    "13. Squats (Tight / Broad)",
-    "14. Calf Lifts",
-    "15. Back Extentions" */
-
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
 const finish = document.getElementById("finish");
@@ -79,7 +65,7 @@ function timer() {
         document.getElementById("start").style.top = "100px";            // Lowers down `START` button
         document.getElementById("reset").style.top = "100px";            // Lowers down `RESET` button
         document.querySelector("#action p").innerText = "Get Ready!";    // Changes action text
-        document.querySelector("#timer p").innerText = 1;               // Initial countdown ("Get Ready!")
+        document.querySelector("#timer p").innerText = 10;               // Initial countdown ("Get Ready!")
         document.querySelector("#exercise p").innerText = exercises[0];  // Displays first exercise
 
         // Displays all the necessary exercise information
