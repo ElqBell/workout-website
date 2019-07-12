@@ -1,13 +1,13 @@
 to do:
-1. once finish is pressed, show some kind of statistics. (also clearinterval)
-2. ability to enter a set of exercises and save it as a preset so you can choose and do it later
+1. ability to enter a set of exercises and save it as a preset so you can choose and do it later
    you should be able to edit (add,remove) exercises from the preset,
    change individual exercises' text
    change orientation (number in list)
    merge preset with another preset
    delete preset
-3. show total time passed once finished (also count when paused)
-4. ability to skip exercise to next
-5. clean up code (alot of the `document.` can be changed for variables)
-6. add break between sets time
-7. add ability to finish early. (display finish early button)
+2. ability to skip exercise to next
+3. clean up code (alot of the `document.` can be changed for variables)
+4. add break between sets time
+5. add ability to finish early. (display finish early button)
+6. change statistics H/M/S styling
+7. test if all time statistics are correct.
