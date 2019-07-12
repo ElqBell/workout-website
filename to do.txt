@@ -10,3 +10,4 @@ to do:
 4. ability to skip exercise to next
 5. clean up code (alot of the `document.` can be changed for variables)
 6. add break between sets time
+7. add ability to finish early. (display finish early button)
