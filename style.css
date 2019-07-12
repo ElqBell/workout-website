@@ -86,8 +86,8 @@ header {
 
 .stats {
     position: relative;
-    width: 400px;
-    height: 500px;
+    width: 480px;
+    height: 480px;
     justify-content: flex-start;
     display: none;
 }
@@ -96,9 +96,55 @@ header {
     position: relative;
     top: -25px;
     width: 100%;
+    margin-bottom: 0;
     line-height: 48px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.lists {
+    display: flex;
+    justify-content: center;
+}
+
+.lists ul {
+    list-style-type: none;
+}
+
+.lists ul li {
+    margin-top: 14px;
+    font-size: 1.1rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.lists ul hr {
+    margin-top: -2px;
+}
+
+.lists ul:first-child {
+    padding: 39px 30px 25px;
+    margin: 0 15px 0 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.lists ul:first-child li {
+    text-align: right;
+}
+
+.lists ul:last-child {
+    margin: 0 30px 0 0;
+    padding: 0 15px;
+}
+
+.lists ul:last-child li{
+    text-align: center;
+}
+
+.lists ul:last-child li:first-child {
+    margin-left: 3px;
+    letter-spacing: 3px;
+    border: none;
 }
 
 #msg {

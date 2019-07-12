@@ -1,5 +1,10 @@
 const exercises = [
     "1. Burpee Broad (Far) Jumps",
+    "2. Jump Rope"
+];
+
+/*
+,
     "2. Jump Rope",
     "3. Switching Knee Taps",
     "4. Jumping Jacks",
@@ -14,12 +19,13 @@ const exercises = [
     "13. Squats (Tight / Broad)",
     "14. Calf Lifts",
     "15. Back Extentions"
-];
+*/
 
 const start = document.getElementById("start");
 const reset = document.getElementById("reset");
 const finish = document.getElementById("finish");
 const inputs = document.getElementsByTagName("input");
+let statistics = document.querySelectorAll("ul:last-child li");
 
 start.addEventListener("click", () => {
     // Checks if all the inputs have some kind of value
@@ -37,6 +43,8 @@ start.addEventListener("click", () => {
 });
 
 reset.addEventListener("click", resetEverything);
+
+reset.addEventListener("click", resetStats);
 
 finish.addEventListener("click", displayStats);
 
@@ -59,20 +67,24 @@ inputs[2].addEventListener("keyup", () => {
 
 // Start timer when "START" button is pressed
 function timer() {
-    // Start
+    // First start
     if(document.querySelector("#action p").innerText === "") {
-        document.getElementsByTagName("form")[0].style.display = "none"; // Hides form
-        document.getElementById("start").style.top = "100px";            // Lowers down `START` button
-        document.getElementById("reset").style.top = "100px";            // Lowers down `RESET` button
-        document.querySelector("#action p").innerText = "Get Ready!";    // Changes action text
-        document.querySelector("#timer p").innerText = 10;               // Initial countdown ("Get Ready!")
-        document.querySelector("#exercise p").innerText = exercises[0];  // Displays first exercise
+        document.getElementsByTagName("form")[0].style.display = "none";       // Hides form
+        document.getElementById("start").style.top = "100px";                  // Lowers down `START` button
+        document.getElementById("reset").style.top = "100px";                  // Lowers down `RESET` button
+        document.querySelector("#action p").innerText = "Get Ready!";          // Changes action text
+        document.querySelector("#timer p").innerText = 1;                      // Initial countdown ("Get Ready!")
+        document.querySelector("#exercise p").innerText = exercises[0];        // Displays first exercise
+        document.querySelector(".information.stats").style.dataCount = "true"; // Starts counting for statistics
 
         // Displays all the necessary exercise information
         document.getElementById("action").style.display = "initial";
         document.getElementById("sets").style.display = "initial";
         document.getElementById("timer").style.display = "initial";
         document.getElementById("exercise").style.display = "initial";
+
+        // Reset statistics
+        resetStats();
     }
     if(reset.style.dataReset !== "true") {
         setInterval(countdown, 1000);
@@ -86,7 +98,7 @@ function stopTimer() {
     document.getElementsByTagName("form")[0].style.display = "none"; // Hides form
     document.getElementById("page").style.backgroundColor = "#7c1b1fe6";
     document.getElementsByClassName("congratulations")[0].style.display = "flex";
-    document.getElementById("finish").style.display = "initial";
+    finish.style.display = "initial";
 }
 
 // Executes when "RESET" button is pressed
@@ -96,6 +108,7 @@ function resetEverything() {
 
     start.innerText = "START";
     reset.style.dataReset = "true"; // Indication that timer has been reset
+    document.querySelector(".information.stats").style.dataCount = "false";
     reset.style.display = "none"; // Hides "RESET" button
 
     document.getElementById("page").style.backgroundColor = "#066bb6";
@@ -136,6 +149,10 @@ function displayStats() {
     document.getElementsByClassName("information")[1].style.display = "none";
     document.getElementsByClassName("stats")[0].style.display = "flex";
     document.getElementById("reset").style.top = "100px";
+    statistics[6].innerText = exercises.length;
+    statistics[4].innerText = (+statistics[1].innerText) +
+                              (+statistics[2].innerText) +
+                              (+statistics[3].innerText);
 }
 
 // Checks if either of the inputs are empty
@@ -178,8 +195,9 @@ function colorChange() {
 
 // Counts down time and changes things related to time
 function countdown() {
+    countTime();
     // Executes if timer is not paused 
-    if(start.innerText !== "CONTINUE") {
+    if(start.innerText === "PAUSE" || start.innertext === "BREAK") {
         let time = document.querySelector("#timer p").innerText,
         action = document.querySelector("#action p").innerText,
         color = document.getElementById("page"),
@@ -194,6 +212,7 @@ function countdown() {
         // After a set is finished: lowers sets number by 1
         // After all sets are finished: executes "stopTimer"
         if(time <= 1 && action === "Work") {
+            countExercises();
             // Changes from work to break
             document.querySelector("#timer p").innerText = pause;
             document.querySelector("#action p").innerText = "Break";
@@ -202,6 +221,7 @@ function countdown() {
             // Changes exercise text after one is finished and lowers sets number if all exercises are finished
             let whichExercise = document.querySelector("#exercise p").innerText.match(/\d+/g).map(Number)[0];
             if(whichExercise === exercises.length) {
+                countSets();
                 whichExercise = 0;
                 document.querySelector("#sets p").innerText = --sets;
 
@@ -224,4 +244,36 @@ function countdown() {
             color.style.backgroundColor = "#118007";
         }
     }
+}
+
+
+
+function countTime() {
+    if(document.querySelector(".information.stats").style.dataCount === "true") {
+        let action = document.querySelector("#action p").innerText;
+        if(start.innerText === "CONTINUE") {statistics[3].innerText++;}
+        else if(action === "Work") {statistics[1].innerText++;}
+        else if(action === "Break") {statistics[2].innerText++;}
+    }
+}
+
+function countExercises() {
+    if(document.querySelector(".information.stats").style.dataCount === "true") {
+        statistics[7].innerText++;
+    }
+}
+
+function countSets() {
+    if(document.querySelector(".information.stats").style.dataCount === "true") {
+        statistics[5].innerText++;
+    }
+}
+
+
+function resetStats() {
+    statistics[1].innerText = 0;
+    statistics[2].innerText = 0;
+    statistics[3].innerText = 0;
+    statistics[5].innerText = 0;
+    statistics[7].innerText = 0;
 }
