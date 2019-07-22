@@ -6,7 +6,7 @@ to do:
    merge preset with another preset
    delete preset
 2. ability to skip exercise to next
-3. clean up code (alot of the `document.` can be changed for variables)
+3. clean up code (`document.`)
 4. add break between sets time
 5. change statistics H/M/S styling
 6. in statistics add ability to change display between hours, minutes and seconds

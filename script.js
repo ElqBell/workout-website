@@ -11,11 +11,11 @@ const exercises = [
     "7. Plank / Leg Side to Side",
     "8. Leg Raises / Seated Side to Side",
     "9. Russian Twist / Weighted",
-    "10. Broad Pushups",
+    "10. Boxing Punches",
     "11. Bicycles",
     "12. Fast Foot Shuffle (Fast Low Run)",
     "13. Squats (Tight / Broad)",
-    "14. Calf Lifts",
+    "14. Boxing Punches",
     "15. Back Extentions"
 */
 
