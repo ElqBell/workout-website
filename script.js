@@ -1,6 +1,19 @@
 const exercises = [
     "1. Burpee Broad (Far) Jumps",
-    "2. Jump Rope"
+    "2. Jump Rope",
+    "3. Switching Knee Taps",
+    "4. Jumping Jacks",
+    "5. Diamond Pushups",
+    "6. Mountain Climbers",
+    "7. Plank / Leg Side to Side",
+    "8. Leg Raises / Seated Side to Side",
+    "9. Russian Twist / Weighted",
+    "10. Boxing Punches",
+    "11. Bicycles",
+    "12. Fast Foot Shuffle (Fast Low Run)",
+    "13. Squats (Tight / Broad)",
+    "14. Boxing Punches",
+    "15. Back Extentions"
 ];
 
 /*
@@ -74,7 +87,7 @@ function timer() {
         start.style.top = "100px";                  // Lowers down `START` button
         reset.style.top = "100px";                  // Lowers down `RESET` button
         document.querySelector("#action p").innerText = "Get Ready!";          // Changes action text
-        document.querySelector("#timer p").innerText = 1;                      // Initial countdown ("Get Ready!")
+        document.querySelector("#timer p").innerText = 10;                      // Initial countdown ("Get Ready!")
         document.querySelector("#exercise p").innerText = exercises[0];        // Displays first exercise
         document.querySelector(".information.stats").style.dataCount = "true"; // Starts tracking statistics
 
