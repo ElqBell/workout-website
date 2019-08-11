@@ -31,7 +31,7 @@ header {
     letter-spacing: 0.5px;
 }
 
-#start, #reset, #finish {
+#start, #reset, #finish, #early {
     position: relative;
     top: 120px;
     line-height: 70px;
@@ -54,6 +54,13 @@ header {
 
 #finish {
     display: none;
+}
+
+#early {
+    display: none;
+    width: 300px;
+    font-size: 2rem;
+    line-height: 50px;
 }
 
 .information {
@@ -143,7 +150,7 @@ header {
 
 .lists ul:last-child li:first-child {
     margin-left: 3px;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     border: none;
 }
 
