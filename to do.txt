@@ -1,13 +1,14 @@
 to do:
-1. ability to enter a set of exercises and save it as a preset so you can choose and do it later
+*. ability to enter a set of exercises and save it as a preset so you can choose and do it later
    you should be able to edit (add,remove) exercises from the preset,
    change individual exercises' text
    change orientation (number in list)
    merge preset with another preset
    delete preset
-2. ability to skip exercise to next
-3. clean up code (`document.`)
-4. add break between sets time
-5. change statistics H/M/S styling
-6. in statistics add ability to change display between hours, minutes and seconds
-7. add sound on break, work and finish
+*. ability to skip exercise to next
+*. add break between sets time
+*. change statistics H/M/S styling
+*. in statistics add ability to change display between hours, minutes and seconds
+*. add sound on break, work and finish
+*. add ability to share statistics
+*. make the website responsive
